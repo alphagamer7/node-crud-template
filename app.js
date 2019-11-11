@@ -15,12 +15,15 @@ if (process.env.ENV === 'Test') {
 
 const port = process.env.PORT || 3000;
 const Book = require('./models/bookModel');
+const Author = require('./models/AuthorModel');
 const bookRouter = require('./routes/bookRouter')(Book);
+const authorRouter = require('./routes/authorRoutes')(Author);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api', bookRouter);
+app.use('/api', authorRouter);
 
 app.get('/', (req, res) => {
   res.send('Welcome to my Nodemon API!');
